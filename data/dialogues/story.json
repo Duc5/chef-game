@@ -1,0 +1,81 @@
+{
+  "rowan": [
+    "Elder Rowan: Ah! Our young chef! Word travels quickly in a village this small. Especially when delivered by a pigeon that refuses to leave my roof.",
+    "Elder Rowan: So the King needs a feast, does he? Then the royal kitchens have chosen well. Or chosen desperately. Time shall tell!",
+    "Elder Rowan: The ingredients you seek are no ordinary harvest. Each belongs to an old tale, and each tale hides a little truth.",
+    "Elder Rowan: In Riverwood, the Dewcrown grows where the river keeps the land apart. Bram the lumberjack knows those woods better than anyone.",
+    "Elder Rowan: In the Whispering Peaks, they say even stones can fly. Speak with Mira by the northern gate.",
+    "Elder Rowan: And the fires of Emberfall? Flint the blacksmith has been babbling about those furnaces for years. For once, it might be worth listening.",
+    "Elder Rowan: Remember this, chef: when the road seems impossible, look at what the world has placed around you.",
+    "Chef (thought): Look around, ask questions, and try not to burn dinner. Understood."
+  ],
+  "rowan_repeat": [
+    "Elder Rowan: An old story is only useful if you remember to look for the truth inside it.",
+    "Elder Rowan: Your royal letter should remind you which ingredients remain."
+  ],
+  "bram": [
+    "Bram: Hold it there. You don't look like a woodcutter.",
+    "Bram: A chef? In these woods? Hah! I suppose even mushrooms have become difficult to find these days.",
+    "Bram: You're after the Dewcrown, aren't you? Aye, I've seen it. Glows like moonlight, tastes like heaven, and grows on the wrong side of the river.",
+    "Bram: Trouble is, the river's too deep to wade. And there's no bridge left standing around here.",
+    "Bram: My grandfather used to say, \"When the forest won't give you a path, ask the trees.\"",
+    "Bram: There's an old oak by the water. Trunk's been weak for years. I've always wondered which way it'd fall.",
+    "Chef (thought): Ask the trees? I wonder if my spatula is sturdy enough."
+  ],
+  "bram_repeat": [
+    "Bram: That big oak by the river has seen better days.",
+    "Bram: A good whack can work wonders. Just don't stand where it falls!"
+  ],
+  "mira": [
+    "Mira: Off to the mountains, are you? Splendid! Most people prefer to admire them from a comfortable distance.",
+    "Mira: The Skyfeather Bird nests beyond the Whispering Chasm. No ordinary person can jump that far.",
+    "Mira: But something curious happens up there. I've watched pebbles rise from the valley instead of falling into it.",
+    "Mira: The old mountaineers called them the Breath of the Mountains. Invisible winds strong enough to carry almost anything.",
+    "Mira: If you want my advice, bring something you can throw. It's better to lose a stone than find out what happens when you jump blindly.",
+    "Chef (thought): Invisible wind... Perhaps I can find a way across."
+  ],
+  "mira_repeat": [
+    "Mira: If you can't see a path, look for how the world reacts to it.",
+    "Mira: The mountains leave clues for those patient enough to notice."
+  ],
+  "flint": [
+    "Flint: Well, well! What's this? A chef carrying a weapon?",
+    "Flint: Hold still. Let me have a look at that thing.",
+    "Flint: A GIANT SPATULA?!",
+    "Flint: HA! I've spent forty years hammering swords, and nobody ever asked me to forge one of those!",
+    "Flint: Anyway, if you're after a Cinderheart Pepper, you'll need to venture into the old forge at Emberfall.",
+    "Flint: They built that place around a curious machine. It could turn the mountain's own fire back upon itself.",
+    "Flint: They say the furnace doors only opened when the ancient switches were fed the flame they once released.",
+    "Flint: Fire's a dangerous thing, chef. But a good piece of metal knows how to send it straight back.",
+    "Chef (thought): Maybe this spatula was made for more than cooking."
+  ],
+  "flint_repeat": [
+    "Flint: Keep your eyes on the fireballs, not the creature throwing them.",
+    "Flint: Timing's everything when you're sending something back where it came from."
+  ],
+  "quill": [
+    "Steward Quill: Ah! The chosen chef has arrived!",
+    "Steward Quill: His Majesty's feast approaches, and the royal pantry is still missing its most important ingredients.",
+    "Steward Quill: Might I suggest a little less sightseeing and a little more gathering?"
+  ],
+  "quill_repeat": [
+    "Steward Quill: Let me see... Your list is not quite complete.",
+    "Steward Quill: Please consult your royal letter. I would rather not serve His Majesty an empty plate."
+  ],
+  "letter": [
+    "To the Esteemed Chef,",
+    "By royal decree, you have been selected to prepare His Majesty's Birthday Feast! Alas, our royal pantry is terribly unprepared.",
+    "Procure three extraordinary treasures: the Dewcrown Mushroom of Riverwood, the Skyfeather Egg of the Whispering Peaks, and the Cinderheart Pepper of Emberfall.",
+    "The Village Elder, mountaineer Mira and blacksmith Flint may know the old tales. Return to the Royal Kitchen with all three treasures.",
+    "By order of His Royal Majesty — Steward Quill, Keeper of the Royal Kitchens.",
+    "Chef: Three ingredients. Three dangerous places. And I've only just had breakfast."
+  ],
+  "ending": [
+    "The chef places the three legendary ingredients on the grand kitchen counter.",
+    "The mushroom glows softly. The egg shimmers like the morning sky. The pepper radiates a gentle warmth.",
+    "Steward Quill: Extraordinary. Truly extraordinary!",
+    "Steward Quill: And now, our finest chef, there is only one question left.",
+    "Steward Quill: What on earth are you going to cook?",
+    "Chef: ...I probably should have thought about that."
+  ]
+}

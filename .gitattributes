@@ -1,0 +1,10 @@
+# Keep Godot scenes/scripts stable when teammates use different operating systems.
+* text=auto eol=lf
+*.cmd text eol=crlf
+*.png binary
+*.ogg binary
+*.wav binary
+*.ttf binary
+*.zip binary
+*.exe binary
+*.pck binary

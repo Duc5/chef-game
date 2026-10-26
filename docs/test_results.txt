@@ -1,0 +1,65 @@
+Godot 4.7.2 native integration suite
+PASS Editable TileMapLayer terrain loads
+PASS Chef begins with three hearts
+PASS Pigeon delivers interactable letter
+PASS Opening letter unlocks paced dialogue and journal
+PASS Closing dialogue with E does not reopen the same NPC
+PASS WASD input moves the physics body
+PASS Jump raises the chef above the shadow plane
+PASS Jump returns safely to ground
+PASS Discovery mask reveals nearby map cells
+PASS Nearest interaction selects and outlines weakened oak
+PASS Left-click attack hitbox physically strikes the tree
+PASS Two spatula hits leave bridge unsolved
+PASS Third hit makes river gap physically traversable
+PASS Repeated attacks do not repeat puzzle completion
+PASS Chef can physically walk across the fallen bridge
+PASS Mushroom collection updates inventory
+PASS Ingredient collection is idempotent
+PASS Map exploration survives region transitions
+PASS Fallen tree persists after returning to region
+PASS Loose stones can be picked up
+PASS Picking up a stone produces no tutorial pop-up
+PASS Thrown rock reveals a hidden current
+PASS Wind discovery uses visual feedback without a pop-up
+PASS Rock supply replenishes
+PASS Midair save reloads at a safe ledge
+PASS Old mountain saves migrate safely to the new ledge
+PASS Wind lifts chef to a fixed hover height
+PASS Hover stays bounded after fifteen seconds in a gust
+PASS Camera keeps the hovering chef visible in the play area
+PASS Failed chasm crossing returns to checkpoint
+PASS Falling retains quest progress
+PASS Holding W cannot cross wind pattern 0
+PASS Pattern 0 requires a jump across the gap between gusts
+PASS Wind pattern 0 can be completed by jumping between staggered gusts
+PASS Holding W cannot cross wind pattern 1
+PASS Pattern 1 requires a jump across the gap between gusts
+PASS Wind pattern 1 can be completed by jumping between staggered gusts
+PASS Holding W cannot cross wind pattern 2
+PASS Pattern 2 requires a jump across the gap between gusts
+PASS Wind pattern 2 can be completed by jumping between staggered gusts
+PASS Egg can be collected without NPC prerequisites
+PASS Greenhouse begins sealed
+PASS Normal melee cannot activate furnace switches
+PASS Timed attack physically reflects an incoming fireball
+PASS Reflection produces no gameplay-covering pop-up
+PASS Spatula reflection changes projectile allegiance and aim
+PASS Reflected projectile activates furnace 0
+PASS Reflection produces no gameplay-covering pop-up
+PASS Spatula reflection changes projectile allegiance and aim
+PASS Reflected projectile activates furnace 1
+PASS Reflection produces no gameplay-covering pop-up
+PASS Spatula reflection changes projectile allegiance and aim
+PASS Reflected projectile activates furnace 2
+PASS Three switches open the greenhouse
+PASS Permanent spout still supplies fire after imp dies
+PASS All three data-defined ingredients are collected
+PASS Death restores health and retains all quest progress
+PASS Atomic save succeeds
+PASS Versioned save reload succeeds
+PASS Save restores ingredients and puzzle states
+PASS Save restores persistent fog discovery
+PASS Returning ingredients triggers final cutscene
+PASS Final cutscene reaches prototype completion
+63 / 63 checks passed

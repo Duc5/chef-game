@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="IngredientData" load_steps=3 format=3]
+[ext_resource type="Script" path="res://scripts/quests/ingredient_data.gd" id="1"]
+[ext_resource type="Texture2D" path="res://assets/custom/pepper.svg" id="2"]
+[resource]
+script = ExtResource("1")
+stable_id = "pepper"
+display_name = "Cinderheart Pepper"
+region_id = "volcano"
+clue = "Flint says the forge wakes when fire is returned."
+icon = ExtResource("2")

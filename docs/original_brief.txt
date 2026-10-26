@@ -1,0 +1,1099 @@
+Chef Game - Duc
+The main character is a chef, who’s given the task of serving the Royal family for the king’s birthday
+Need to find the best prime ingredients from far and wide
+Interact with townspeople to ask hints for where to gather ingredients
+Goes around the map, solving puzzles to find ingredients then combines them at the end
+Combining the ingredients, actual cooking is the 2nd stage of the game, more discoveries of recipe, many options to cook different dishes some turn out good others can become bad (dont do this for this prototype version)
+Potential Octonauts vibes - go through volcanos, icy mountains, lakes to get ingredients - simple tasks like breaking a tree to fall onto the lake to make a bridge + Hints - maybe MC interacts with rocks and says something like maybe these rocks could stop a tree
+Optional hints at every stage of the puzzle 
+
+Setting/spec:
+the game must be 2d, using top down camera view and sorta pixel art, like soul knight and stardew valley style
+The setting will be old times when there are still farmers and kings n queens that kinda stuff, typical adventurer setting
+
+Game loop:
+You start off with getting a letter dropped from the sky by a pigeon, you open it and see that you are the ultimate selection to cook for the royal family for the king's birthday, you must find a list of the best and most prime ingredients from far and wide (this letter will also be the guide of where you can get information to find where the ingredient is)
+for example of one ingredient:
+you talk to a townsperson and they tell u to find the head of the village, he tells an old tale that shows hint where the thing is
+
+there should also be a minimap and u slowly discover it out, the minimap mechanism should work like those modded Minecraft minimap where once u found some place u see it on the map
+
+
+moving should be with wasd, when u are close to some character or element that cna be talked to or interacted with, a white border shows up with it
+
+for fighting, the main weapon of the MC is a giant spatula it can smash
+fighting game mechanic: keep it simple, just move and dodge/jump and dodge, then one click is hit/whack it to the face of the enemy
+oh a good idea is fighting against a projectile shooting enemy it can use the spatula to bounce the projectile back to the enemy and damage them
+
+more ideas to add for puzzles to approach the ingredient:
+u approach a river and dont know what to do, theres a tree right by the side of the river if u walk near a tree a white border around the tree light up, if u chop it down it lays down perfectly with length to the other river, so u cn click it a few times to chop it down for the tree to fall down to make a bridge to the other side
+
+another puzzly idea: u encounter a valley, u need to get to the other side to get to the other mountain to get the ingredient, maybe a super rare bird egg. the piece of interaction is js a small pile of rock u see on the ground, u cn pick it up and throw it, when u throw it, u realise that some parts of the valley has super strong invisible wind that launches u up, so the solution to the puzzle is throw the rocks to see which part of the valley has that up wind and jump and catch urself with the wind in those tiles to get to the other side
+
+above is the draft of the idea, here is what is actually planned out so u can implement
+
+world/game structure for the current prototype
+al invitation · The ingredient list
+
+
+Bramblewick Village -Starting hub · Townspeople · Quest clues · Inventory
+
+->Riverwood-Tree bridge
+->Whispering Peaks - Invisible wind
+->Emberfall - Fire reflection
+
+All ingredients collected
+
+Return to the Royal Kitchen
+
+Prototype ending · Cooking reserved for Stage 2
+
+The mechanic to get ingredient and what they are
+2. Three main ingredients I'd implement
+
+
+1. Dewcrown Mushroom
+Riverwood Forest · Environmental manipulation
+
+A legendary mushroom that only grows on an island surrounded by flowing freshwater.
+
+NPC clue: An old lumberjack remember the mushroom is in an island.
+
+Puzzle: The player finds a fallen axe, a pile of stones, and a tall tree on the riverbank. The stones can be positioned to stop the tree from falling in the wrong direction. Three whacks with the spatula topple it, forming a bridge.
+
+Discovery: The player learns that attacking environmental objects can permanently change the world.
+
+
+2. Skyfeather Egg
+Whispering Peaks · Experimentation and movement
+
+A rare ingredient found in the nest of a magical bird that lives on an otherwise inaccessible cliff.
+
+NPC clue: A retired mountaineer remember the wind is very strong in that velley.
+
+Puzzle: The player throws rocks into apparently empty sections of a chasm. Some fall, but others float upwards, revealing invisible columns of rising air. The player must jump between the safe wind currents to reach the nest.
+
+Discovery: Objects can reveal hidden environmental mechanics. The solution isn't visible until the player experiments.
+
+
+3. Cinderheart Pepper
+Emberfall Volcano · Combat and puzzle integration
+
+A fiery pepper that grows inside a sealed volcanic greenhouse, fed by the heat of the mountain.
+
+NPC clue: A travelling blacksmith explains that the ancient forge was powered by returning fire to its source.
+
+Puzzle: Fire spirits shoot projectiles towards the chef. By timing the spatula swing, the player can reflect the projectiles. Reflected fireballs can hurt the spirits or activate three ancient furnace switches to open the greenhouse.
+
+Discovery: Combat mechanics double as puzzle-solving tools.
+
+4. Frostglass Salt — The Frozen Mirror Lake
+
+The lake is full of reflective ice. A reclusive fisherman says that moonlight once opened a hidden passage. The player slides ice blocks into position to redirect beams of light onto a frozen cave door. Some blocks slide until they hit obstacles, so placement matters.
+
+
+3.Combat design: simple, responsive and entertaining
+build combat around three actions: whack, dodge, reflect. Reflection is part of the whack rather than another button.
+	Enemy design:Ash Imp — Ranged attacker
+
+Shoots a clearly telegraphed fireball towards the chef. The player can dodge or reflect it. Reflected projectiles damage the imp. This should be the primary combat encounter.
+
+4. Other gameplay specifications
+Player controls and physics
+Property	Recommended specification
+Movement	WASD, eight directions, smooth movement
+Aiming	Mouse position determines attack direction
+Normal attack	Left mouse click
+Interaction	E
+Dodge	Left Shift
+Jump	Space
+Pick up / throw rock	E to pick up, right click to throw towards cursor
+Hints	H, when standing near a puzzle
+Journal / letter	J
+Full map	M
+Pause menu	Escape
+Player health	3 hearts
+Death	Respawn at last safe checkpoint; retain quest progress
+Attack cooldown	Initial target 0.4 seconds, adjusted after playtesting
+Camera	Smooth-following top-down Camera2D
+
+Interactions and white outlines
+Here's what should happen whenever the player approaches something interactive:
+1. A white pixel outline appears on the nearest eligible object within range.
+2. An interaction prompt appears, such as E: Talk or E: Pick up.
+3. Hittable objects additionally respond to the spatula, without needing an E interaction.
+4. When multiple objects are nearby, the game chooses the nearest valid object, favouring the character's facing direction.
+5. Objects outside interaction range lose their outline.
+Use a reusable interaction component and outline shader. Don't write separate proximity-handling code for every NPC, rock, tree and ingredient.
+
+Optional hint system: 3 hints per puzzle progressively more disclosed
+The player should always be able to solve a puzzle without reading the hints. Environmental details should provide enough information through observation and experimentation. Hints are an accessibility feature, not the primary way to communicate a puzzle solution.
+
+Quest progression
+speaking to NPC is not compulsory
+NPCs provide clues, but don't gate the actual ingredient. For example, a player who discovers the wind puzzle without speaking to the mountaineer can still complete it.
+
+The narrative path would be:
+Pigeon delivers the royal letter
+
+Player examines ingredient list
+
+Player explores and optionally questions NPCs
+
+Player discovers and solves puzzle
+
+Ingredient is collected and journal updated
+
+All three collected → return to Royal Kitchen
+
+Minimpa behavior
+Areas within roughly six map tiles of the player become discovered, with walls blocking reveal if desired.
+
+Previously visited tiles remain visible permanently. Undiscovered tiles remain dark. NPCs, points of interest and region entrances only appear after discovery.
+
+A small minimap stays in the top-right corner. Pressing M opens a larger region map. Discovery is preserved when the player moves between regions or reloads a save.
+
+
+
+For the prototype, use a grid-based discovery mask rather than expensive line-of-sight simulation or continuous texture painting. This is easier to test and maintain.
+
+Art specification
+Attribute	Recommended choice
+Perspective	Top-down with slightly angled building and character sprites, like Stardew Valley
+Tile size	16×16 pixels
+Internal viewport	640×360
+Scaling	Integer scaling, nearest-neighbour filtering
+Palette	Warm medieval village, lush green forest, cool blue mountain, red-orange volcano
+Character	Readable chef hat, apron and oversized spatula
+Animation	Four-direction idle/walk, attack, dodge and jump
+UI	Medieval parchment panels, pixel font, simple inventory icons
+Audio	Small set of footsteps, whacks, projectile sounds, interaction chimes and ambient music
+
+
+Recommended Godot project architecture
+For code readability, editability and inspection, I recommend a scene-component architecture with data-driven quests.
+
+Godot's own best-practices documentation recommends self-contained scenes, low coupling and clearly owned responsibilities. Its Resource system is also suitable for defining reusable gameplay data independently of code. 
+
+
+I'd suggest this project layout:
+chef-game/
+├── AGENTS.md
+├── README.md
+├── project.godot
+├── docs/
+│   ├── game_design.md
+│   ├── architecture.md
+│   ├── quest_specs.md
+│   └── test_plan.md
+├── assets/
+│   ├── characters/
+│   ├── tilesets/
+│   ├── objects/
+│   ├── ui/
+│   └── audio/
+├── scenes/
+│   ├── main.tscn
+│   ├── player/
+│   │   └── player.tscn
+│   ├── regions/
+│   │   ├── village.tscn
+│   │   ├── forest.tscn
+│   │   ├── mountains.tscn
+│   │   └── volcano.tscn
+│   ├── actors/
+│   │   ├── npc.tscn
+│   │   └── enemy.tscn
+│   ├── objects/
+│   │   ├── interactive_tree.tscn
+│   │   ├── throwable_rock.tscn
+│   │   └── projectile.tscn
+│   └── ui/
+│       ├── hud.tscn
+│       ├── minimap.tscn
+│       ├── dialogue_box.tscn
+│       └── journal.tscn
+├── scripts/
+│   ├── player/
+│   ├── interaction/
+│   ├── combat/
+│   ├── puzzles/
+│   ├── quests/
+│   ├── world/
+│   └── ui/
+├── data/
+│   ├── items/
+│   ├── quests/
+│   └── dialogues/
+└── tests/
+    ├── unit/
+    └── integration/
+
+System	Responsibility
+Player Controller	Movement, dodging, jumping and attack input
+Interaction System	Detection, targeting, outlines and interaction calls
+Combat System	Hitboxes, damage, projectiles, reflections and enemy health
+Puzzle Controllers	Puzzle-local state, completion and world changes
+Quest Manager	Ingredient requirements and quest progress
+Dialogue System	NPC conversations and optional hints
+Inventory	Collected ingredients and throwable items
+World Manager	Region transitions and checkpoints
+Fog of War	Discoverable region cells and map state
+Save System	Persistent world state, inventory and exploration
+UI Controllers	Displaying state without deciding gameplay rules
+
+Here's an example of the kind of separation I want Codex to follow.
+
+When the chef cuts down the tree:
+1. The attack hitbox detects a collision with the tree's damageable component.
+2. The tree's local puzzle controller counts the hits.
+3. After three hits, the tree changes state to FALLEN.
+4. Its animation plays, and the bridge collision becomes traversable.
+5. The tree emits an event such as puzzle_completed("forest_tree_bridge").
+6. The quest manager updates relevant progression, without the tree needing to know which quest owns it.
+This is much more maintainable than a giant game_manager.gd script controlling every puzzle.
+For the environment, use Godot's TileMapLayer nodes for terrain, obstacles and foreground elements. The older TileMap node is deprecated in Godot 4.
+
+What Codex should document
+Each major system needs a short explanation of its purpose, public signals, dependencies and extension points.
+
+For example, adding a new ingredient quest should generally involve creating a quest-data resource, placing ingredient and puzzle scenes, and writing the new puzzle-specific logic. It should not require editing the player controller, inventory UI or every existing quest.
+
+That is the architectural outcome worth testing.
+
+Development phases
+1. Phase 1 — Technical foundation
+   
+   Set up the Godot project, input system, player controller, camera, collision layers, basic UI and reusable interactions. Build a tiny test room. Nothing else until movement and attacking feel good.
+2. Phase 2 — One complete gameplay slice
+   
+   Build the village, pigeon letter, one NPC, a dialogue system, the tree bridge puzzle, the first ingredient and the quest journal. Establish the complete core loop.
+3. Phase 3 — Reusable combat
+   
+   Add spatula hitboxes, dodge, health, projectiles, reflection and the Ash Imp. Test these independently before introducing volcano puzzles.
+4. Phase 4 — Remaining quests
+   
+   Implement wind-jump mechanics and the Skyfeather Egg, then the volcanic greenhouse and Cinderheart Pepper.
+5. Phase 5 — Exploration and persistence
+   
+   Implement minimap discovery, region transitions, saving/loading, checkpoints and puzzle-state persistence.
+6. Phase 6 — Art, audio, polish and final testing
+   
+   Replace placeholders, improve effects and animations, balance combat, verify all quest paths and create a playable desktop export.
+
+14. Definition of done — what should actually be tested
+These are examples of measurable requirements worth giving Codex.
+Feature	Passing condition
+Introduction	Pigeon arrives, letter can be opened and reopened
+Player movement	Eight-direction movement, collisions and camera all function
+Interactions	NPCs and usable objects highlight correctly within range
+River puzzle	Tree falls after the required hits and becomes a usable bridge
+Wind puzzle	Rock tests reveal current positions; chef can cross safely
+Combat	Spatula damages enemy; correctly timed swing reflects projectile
+Volcano puzzle	Reflected projectiles activate switches; ingredient becomes reachable
+Quest manager	Ingredients are tracked exactly once and persist across regions
+Minimap	Explored territory stays revealed; unexplored territory stays hidden
+Hints	Three optional levels available for each main puzzle
+Saving	Reloading restores inventory, map and puzzle completion
+Completion	Collecting all ingredients and returning to the kitchen triggers ending
+Reliability	No progression softlocks, missing assets, script errors or invalid scene references
+
+7. Refined architecture requirements for Codex
+I would require Godot 4, typed GDScript, reusable scenes, data-driven content, local signals and very limited global state.
+
+Godot's Resource system is suitable for data definitions, while TileMapLayer is the current choice for layered 2D maps rather than the deprecated TileMap. 
+
+Godot Engine (stable) documentation in English
++1
+
+
+
+Layered architecture
+Presentation layer
+
+HUD · Dialogue · Minimap · Animations · Audio
+
+
+Gameplay systems
+
+Player · Combat · Interactions · Puzzles · Quests
+
+
+World and persistence
+
+Regions · State transitions · Saving · Fog discovery
+
+
+Content definitions
+
+Items · NPC dialogues · Quest data · Enemy stats · Puzzle variants
+
+
+The diagram is conceptual: not every arrow represents a literal code dependency. In particular, content should be treated as data, and UI should observe gameplay state rather than own it.
+Rules to impose on code quality
+Rule	Why
+No giant central gameplay script	Prevents one file from controlling movement, inventory, dialogue and every puzzle
+Strongly typed public interfaces	Makes GDScript easier to inspect and refactor
+Reusable health, interaction and projectile components	Avoids duplicating mechanics for each enemy or environmental object
+Puzzle state machines	Makes it clear which transitions are permitted
+Stable IDs for quests, items and puzzle objects	Allows reliable saving without fragile node references
+Data-driven dialogue and quest definitions	Writers can adjust content without rewriting gameplay logic
+Configurable gameplay constants	Combat and movement can be tuned independently
+One-way event/state reporting	UI observes quest and puzzle progress instead of controlling it
+No unnecessary third-party addons	Reduces dependencies and maintenance
+Documented signals and extension points	Makes the code understandable to future contributors
+For instance, each major puzzle should have a clear state machine:
+UNSOLVED
+   |
+   | Player performs valid actions
+   v
+IN_PROGRESS
+   |
+   | Completion condition fulfilled
+   v
+SOLVED
+
+Automated tests
+Godot's CLI supports headless project execution and scripted testing. For GDScript unit tests, community frameworks such as GUT or GdUnit4 are possible choices; Godot's built-in engine --test option is not generally a substitute on a standard binary because it requires an engine built with testing support. 
+
+Godot Engine (stable) documentation in English
++1
+
+
+
+
+The test suite should cover quest ordering, save/load, repeated interactions, projectile ownership, puzzle completion, invalid actions, death during puzzles, and the ability to recover from failed attempts.
+
+The final deliverable should include a playable build, source code, an asset-licence manifest, a README explaining how to run the project, and a test report identifying which checks passed.
+
+*Specific world layout, dialogue and assets
+The game's creative direction should be a cosy medieval-fantasy adventure that becomes progressively more mysterious and dangerous as the chef travels farther from home.
+
+1. Bramblewick Village — The central hub
+Theme: A cheerful medieval farming village, with timber cottages, a market square, crop fields, a blacksmith and stone paths.
+
+Colour palette: Warm greens, honey-coloured wood, terracotta roofs and golden lighting.
+
+Purpose: Introduce the world, establish the royal invitation, teach interactions, and give the player freedom to investigate all three ingredient quests.
+                   NORTH
+           [Whispering Peaks]
+                   |
+             [Mountain Gate]
+                   |
+       [Mountaineer Mira's Camp]
+                   |
+ [Farmland] -- [Village Square] --- [Riverwood Path]
+                  |     \                  |
+           [Village Elder]             [Forest Gate]
+                  |
+ [Chef's Cottage]--+--[Village Well]
+                  |
+             [Market Street]
+                  |
+            [Blacksmith Flint]
+                  |
+             [Eastern Gate]------[Emberfall]
+                  |
+             [Royal Road]
+                  |
+             [Royal Kitchen]
+Locations and interactions
+Location	Gameplay purpose
+Chef's Cottage	Starting location; pigeon delivers invitation here
+Village Square	Central landmark and main gathering area
+Elder Rowan's House	Main story conversation and ingredient lore
+Village Well	Decorative landmark and early interaction tutorial
+Farmland	Establishes the rural setting; villagers and crop decorations
+Mira's Camp	Information about mountains and the Skyfeather Egg
+Flint's Smithy	Information about the volcano and reflecting fire
+Forest Gate	Travel to Riverwood
+Mountain Gate	Travel to Whispering Peaks
+Eastern Gate	Travel to Emberfall
+Royal Kitchen	Final destination, accessible throughout the game
+Opening choreography:
+1. Player begins outside the cottage, with limited introductory camera movement.
+2. A pigeon flies onto the cottage signpost, carrying a sealed letter.
+3. The pigeon drops the letter. The letter receives a white outline when the chef approaches.
+4. Player presses E to read it; the ingredient quest journal unlocks.
+5. Player is directed to Elder Rowan in the village square.
+6. All three region entrances are open from the beginning.
+Elder Rowan is the recommended first conversation, but not a compulsory progression gate.
+
+The village should have generous walking space and recognisable scenery so players learn the environment naturally rather than following a tightly scripted corridor.
+2. Riverwood Forest — Dewcrown Mushroom
+
+
+Theme: An enchanted woodland full of ancient trees, flowing streams, abandoned lumber equipment and glowing fungi.
+
+Colours: Emerald green, deep forest green, warm brown, turquoise water.
+
+Feeling: Initially peaceful, gradually more mysterious.
+
+
+                     NORTH
+              [Mushroom Grove]
+                     |
+              [Dewcrown Mushroom]
+                     |
+               [Small Island]
+~~~~~~~~~~~~~~~~~~~~~|~~~~~~~~~~~~~~~~~~~~~
+                 RIVER
+~~~~~~~~~~~~~~~~~~~~~|~~~~~~~~~~~~~~~~~~~~~
+                     |
+                  [Gap]
+                     |
+           [Large Weakened Tree]----[Rock Pile]
+                     |
+              [River Clearing]
+                  /      \
+       [Old Lumber Camp] [Forest Lookout]
+              |                |
+       [Lumberjack Bram]  [Scenic path]
+              \                /
+             [Forest Trail]
+                    |
+          [Small Enemy Encounter]
+                    |
+           [Riverwood Entrance]
+                    |
+            [Bramblewick Village]
+
+Detailed gameplay
+The player arrives on a forest path, encounters one Barkling (a small hostile animated stump), and learns that the spatula can damage enemies.
+
+Continuing north reveals an abandoned lumber camp. Bram, an old lumberjack, explains the legend of the mushroom.
+
+Past the camp is a broad river. The player cannot swim across it. A tall weakened tree stands near the riverbank, aligned with the island.
+
+When the player approaches:
+- The tree receives the familiar white outline.
+- Pressing E inspects the tree, revealing a contextual observation.
+- Hitting the trunk three times produces increasingly visible cracks.
+- On the third hit, the tree falls across the river and becomes a walkable bridge.
+- The player crosses, reaches the glowing mushroom and collects it.
+The rock pile is decorative or examinable for this prototype; it is not required for the bridge. We don't need a second tree-direction puzzle.
+
+Seeded variation: Choose between a few handcrafted locations for the river crossing, with the correct tree always visually distinctive and properly aligned. The whole map doesn't need to regenerate.
+
+Checkpoint: Immediately before the crossing clearing.
+
+Completion: The journal updates to show the Dewcrown Mushroom collected. The fallen tree stays fallen when the player returns.
+3. Whispering Peaks — Skyfeather Egg
+
+
+Theme: An alpine region of icy paths, snowy cliffs, high winds and abandoned mountaineering equipment.
+
+Colours: Pale blue, white, slate grey, muted lavender.
+
+Feeling: Open, cold and mysterious, with wind audible before the player sees its effects.
+
+                    NORTH
+              [Skyfeather Nest]
+                     |
+               [Far Plateau]
+                     |
+             [Landing Platform]
+                     |
+              [Final Updraft]
+                     ^
+                     |
+              [Middle Updraft]
+                     ^
+                     |
+              [First Updraft]
+                     ^
+                     |
+================= CHASM =================
+     Falling hazard / open valley
+=========================================
+                     |
+              [Jumping Ledge]
+               /           \
+       [Loose Rocks]   [Wind Chimes]
+               \           /
+               [Cliff Lookout]
+                     |
+                [Snowy Path]
+                     |
+              [Abandoned Camp]
+                     |
+              [Mountain Entrance]
+                     |
+              [Bramblewick Village]
+
+Detailed gameplay
+As the player ascends, they notice flags and hanging wind chimes responding to unusually strong wind.
+
+At the chasm, there is no conventional bridge.
+
+A pile of loose rocks sits near the edge. The player can pick one up with E and throw it with right click.
+
+The first thrown rock may fall harmlessly into the chasm. Another, thrown into a hidden updraft, rises into the air.
+
+That is the moment of discovery: there is an invisible path made of wind.
+
+The player must then:
+1. Identify the first updraft by throwing rocks.
+2. Jump from the ledge and enter the updraft while airborne.
+3. Steer towards the next current.
+4. Continue through the sequence of currents.
+5. Land on the far plateau and collect the Skyfeather Egg.
+The updrafts should become faintly visible for a few seconds after a rock enters them, using swirling leaves, snowflakes or wisps of air. Their visibility is temporary, but their locations remain unchanged during the playthrough.
+
+The rock pile must replenish so there is no finite-ammunition softlock.
+
+Seeded variation: Three valid patterns of updraft positions. Each should be individually designed and verified as traversable.
+
+Checkpoint: The jumping ledge. Falling resets the player here without losing collected ingredients.
+
+Important implementation detail: Since this is a top-down game, the map should display a darkened chasm, the player's shadow and a raised sprite during flight. That provides readable feedback about the otherwise hidden height dimension.
+4. Emberfall Volcano — Cinderheart Pepper
+Theme: A volcanic wasteland leading to an ancient forge, with cracked black stone, glowing lava, metal machinery and strange plants growing from heated soil.
+
+Colours: Charcoal, dark red, orange, yellow and small green accents around the magical greenhouse.
+
+Feeling: The most dangerous and action-focused region of the prototype.
+                      NORTH
+             [Cinderheart Greenhouse]
+                      |
+                 [Sealed Door]
+                      |
+           [Three Furnace Switches]
+                A     B     C
+                 \    |    /
+                  [Forge Hall]
+                   /      \
+        [Fire Spout]       [Ash Imp]
+                   \      /
+              [Combat Arena]
+                      |
+                [Lava Path]
+                      |
+             [Ruined Stone Gate]
+                      |
+               [Volcano Entrance]
+                      |
+              [Bramblewick Village]
+Detailed gameplay
+The volcano begins with a short passage that introduces a ranged enemy, the Ash Imp.
+
+The imp periodically shoots slow fireballs. The player can dodge them, or time a spatula attack to reflect a fireball back at the enemy.
+
+Further inside, the chef enters the ancient forge.
+
+There are three furnace switches around a sealed door. Each switch must be struck by a reflected projectile.
+
+The player can reflect fireballs from either the Ash Imp or an ancient fire-spouting mechanism positioned in the room. The spout is permanently available so killing the enemy never makes the puzzle impossible.
+
+When all switches are activated:
+- The furnace produces a loud metallic sound.
+- The sealed door gradually opens.
+- A warm green glow shines from the greenhouse.
+- The chef can collect the Cinderheart Pepper.
+Seeded variation: The furnace switches have three possible handcrafted position arrangements. Their activation order is unrestricted, and every arrangement is reachable using the reflection mechanic.
+
+Checkpoint: The entrance to the Forge Hall.
+
+The reflected projectiles should use the same physics, damage and collision rules whether aimed at enemies or environmental switches. Avoid writing a completely separate puzzle-only projectile system.
+5. Royal Kitchen — The ending
+             [Royal Castle Entrance]
+                       |
+               [Kitchen Corridor]
+                       |
+             [Royal Steward Quill]
+                       |
+                [Grand Kitchen]
+                /      |      \
+          [Oven]   [Counter]  [Pantry]
+                       |
+             [Ingredient Display]
+                       |
+             [Ending Cutscene]
+This is a small interior rather than a whole castle.
+
+The player can enter before collecting all three ingredients. Steward Quill comments on their progress and politely asks them to continue the quest.
+
+When all ingredients are collected, approaching the preparation counter triggers the final scene. Each ingredient appears on the counter, the steward congratulates the chef, and the screen fades to the prototype ending.
+
+No cooking minigame is implemented.
+
+Part II — Story, dialogue and puzzle hints
+Story tone and characters
+I recommend a whimsical British-fantasy tone: charming countryside humour, slightly eccentric villagers, and sincere moments of wonder when the chef discovers something extraordinary.
+
+The chef should be mostly silent, communicating through reactions, short thoughts and occasional dialogue choices that don't alter quest progression. This keeps the script manageable and allows the player to imagine themselves as the protagonist.
+Character	Role	Personality
+Elder Rowan	Village elder and keeper of local legends	Wise, theatrical, slightly forgetful
+Bram	Retired lumberjack in Riverwood	Gruff, practical, fond of tall tales
+Mira	Mountaineer near the northern gate	Adventurous, observant, dry humour
+Flint	Village blacksmith	Loud, enthusiastic, fascinated by the spatula
+Steward Quill	Royal representative at the kitchen	Extremely formal and easily flustered
+The player should be able to read conversations at their own pace. No automatic dialogue advance and no voice acting required.
+Draft in-game script
+The following is the actual proposed text for the prototype, including optional interactions, state-dependent dialogue and all three hint tiers for each main puzzle.
+# Chef Game: A Royal Feast
+## In-game Dialogue Script — Prototype v0.3
+
+### SCENE 01 — A VERY IMPORTANT PIGEON
+
+**Trigger:** The chef exits their cottage at the start of a new game.
+
+**Narration:** A pigeon swoops down from the sky. It circles the cottage twice before dropping a sealed envelope at the chef's feet.
+
+**Chef (thought):** A letter? For me?
+
+**Interaction prompt:** E — Open Letter
+
+### The Royal Invitation
+
+**To the Esteemed Chef,**
+
+By royal decree, you have been selected to prepare His Majesty's Birthday Feast!
+
+Alas, our royal pantry is terribly unprepared. His Majesty refuses to dine on anything less than the finest ingredients in the kingdom.
+
+Your task is to procure these three extraordinary treasures:
+
+- **The Dewcrown Mushroom**, which grows deep within Riverwood Forest, beyond the ancient river. The Village Elder may remember its whereabouts.
+- **The Skyfeather Egg**, found high among the Whispering Peaks. Seek the advice of those who know the mountains.
+- **The Cinderheart Pepper**, cultivated in the forgotten forges of Emberfall. The village blacksmith may know the old ways.
+
+Return with these ingredients to the Royal Kitchen, where preparations for the birthday feast await.
+
+The honour of the kingdom's finest table rests upon your shoulders.
+
+**By order of His Royal Majesty,**
+
+*Steward Quill, Keeper of the Royal Kitchens*
+
+**Chef (thought):** Three ingredients. Three dangerous places. And I've only just had breakfast.
+
+**System message:** New Quest — A Feast Fit for a King!
+
+**Journal objective:** Collect 0/3 Royal Ingredients.
+
+---
+
+### SCENE 02 — ELDER ROWAN
+
+**Location:** Village Square, outside the Elder's House.
+
+**First conversation**
+
+**Elder Rowan:** Ah! Our young chef! Word travels quickly in a village this small. Especially when delivered by a pigeon that refuses to leave my roof.
+
+**Elder Rowan:** So the King needs a feast, does he? Then the royal kitchens have chosen well. Or chosen desperately. Time shall tell!
+
+**Elder Rowan:** The ingredients you seek are no ordinary harvest. Each belongs to an old tale, and each tale hides a little truth.
+
+**Elder Rowan:** In Riverwood, the Dewcrown grows where the river keeps the land apart. Bram the lumberjack knows those woods better than anyone.
+
+**Elder Rowan:** In the Whispering Peaks, they say even stones can fly. Speak with Mira by the northern gate.
+
+**Elder Rowan:** And the fires of Emberfall? Flint the blacksmith has been babbling about those furnaces for years. For once, it might be worth listening.
+
+**Elder Rowan:** Remember this, chef: when the road seems impossible, look at what the world has placed around you.
+
+**Chef (thought):** Look around, ask questions, and try not to burn dinner. Understood.
+
+**Repeat conversation, before collecting all ingredients**
+
+**Elder Rowan:** An old story is only useful if you remember to look for the truth inside it.
+
+**Elder Rowan:** Your royal letter should remind you which ingredients remain.
+
+**After collecting all three ingredients**
+
+**Elder Rowan:** All three? Remarkable! I haven't seen such a journey since the Great Turnip Expedition.
+
+**Elder Rowan:** Don't ask about the turnips. Go! The Royal Kitchen awaits!
+
+---
+
+### SCENE 03 — BRAM THE LUMBERJACK
+
+**Location:** Abandoned Lumber Camp, Riverwood Forest.
+
+**First conversation**
+
+**Bram:** Hold it there. You don't look like a woodcutter.
+
+**Bram:** A chef? In these woods? Hah! I suppose even mushrooms have become difficult to find these days.
+
+**Bram:** You're after the Dewcrown, aren't you? Aye, I've seen it. Glows like moonlight, tastes like heaven, and grows on the wrong side of the river.
+
+**Bram:** Trouble is, the river's too deep to wade. And there's no bridge left standing around here.
+
+**Bram:** My grandfather used to say, "When the forest won't give you a path, ask the trees."
+
+**Bram:** There's an old oak by the water. Trunk's been weak for years. I've always wondered which way it'd fall.
+
+**Chef (thought):** Ask the trees? I wonder if my spatula is sturdy enough.
+
+**Repeat conversation, before bridge completion**
+
+**Bram:** That big oak by the river has seen better days.
+
+**Bram:** A good whack can work wonders. Just don't stand where it falls!
+
+**After crossing the river**
+
+**Bram:** You knocked it down? With a spatula?!
+
+**Bram:** Hah! I like your style, chef.
+
+**After collecting the mushroom**
+
+**Bram:** You found the Dewcrown! Keep it safe. And, er, maybe don't tell the forestry guild about that tree.
+
+#### Forest environmental interactions
+
+**Inspect weakened tree:** The trunk looks old and brittle. A few strong hits might bring it down.
+
+**First hit:** A crack runs through the bark.
+
+**Second hit:** The tree creaks dangerously. One more strike might do it.
+
+**Third hit:** TIMBERRR!
+
+**Bridge formed:** The fallen trunk stretches across the river. A way through!
+
+**Inspect mushroom:** Its cap glistens with tiny silver droplets, though the air is perfectly dry.
+
+**Collect mushroom:** Obtained — Dewcrown Mushroom!
+
+#### Optional Forest puzzle hints
+
+**Hint 1 — Subtle**
+
+*This river is far too deep to cross on foot. Perhaps something nearby could help you reach the other side.*
+
+**Hint 2 — Directional**
+
+*The large tree beside the river looks unusually weak. If it fell, it might be long enough to reach the island.*
+
+**Hint 3 — Explicit**
+
+*Stand beside the weakened tree and hit its trunk three times with your spatula. Once it falls across the river, walk over it to reach the mushroom.*
+
+---
+
+### SCENE 04 — MIRA THE MOUNTAINEER
+
+**Location:** Mountain Camp, near the northern gate of Bramblewick.
+
+**First conversation**
+
+**Mira:** Off to the mountains, are you? Splendid! Most people prefer to admire them from a comfortable distance.
+
+**Mira:** The Skyfeather Bird nests beyond the Whispering Chasm. No ordinary person can jump that far.
+
+**Mira:** But something curious happens up there. I've watched pebbles rise from the valley instead of falling into it.
+
+**Mira:** The old mountaineers called them the Breath of the Mountains. Invisible winds strong enough to carry almost anything.
+
+**Mira:** If you want my advice, bring something you can throw. It's better to lose a stone than find out what happens when you jump blindly.
+
+**Chef (thought):** Invisible wind... Perhaps I can find a way across.
+
+**Repeat conversation**
+
+**Mira:** If you can't see a path, look for how the world reacts to it.
+
+**Mira:** The mountains leave clues for those patient enough to notice.
+
+**After collecting the egg**
+
+**Mira:** A Skyfeather Egg? Incredible!
+
+**Mira:** Tell me, did the wind really carry you over the chasm?
+
+**Chef (thought):** I may have screamed a little.
+
+**Mira:** Ha! Then you crossed it properly.
+
+#### Mountain environmental interactions
+
+**Inspect loose rocks:** Smooth, flat stones. Light enough to throw a good distance.
+
+**Pick up rock:** Rock collected. Right click to throw.
+
+**Rock falls into empty chasm:** The stone disappears into the mist below.
+
+**Rock enters updraft:** The stone rises instead of falling! Something is lifting it.
+
+**Inspect wind chimes:** They sway wildly, though the air here feels almost still.
+
+**First successful wind jump:** The rushing air catches you and lifts you higher!
+
+**Fall into chasm:** Whoa! That was close.
+
+**Reach far plateau:** Solid ground at last. The Skyfeather nest must be close.
+
+**Inspect nest:** A great nest woven from silver grass and mountain flowers. One luminous egg rests safely inside.
+
+**Collect egg:** Obtained — Skyfeather Egg!
+
+#### Optional Mountain puzzle hints
+
+**Hint 1 — Subtle**
+
+*The wind seems to behave strangely above the chasm. Perhaps there is something you could do to learn where it flows.*
+
+**Hint 2 — Directional**
+
+*Those loose rocks might help you test the invisible air currents. Watch what happens when you throw them across the gap.*
+
+**Hint 3 — Explicit**
+
+*Pick up rocks with E and throw them into the chasm with right click. Rocks that rise reveal an updraft. Jump into the first current, then steer through the others to reach the far plateau.*
+
+---
+
+### SCENE 05 — FLINT THE BLACKSMITH
+
+**Location:** Flint's Smithy, Bramblewick Village.
+
+**First conversation**
+
+**Flint:** Well, well! What's this? A chef carrying a weapon?
+
+**Flint:** Hold still. Let me have a look at that thing.
+
+**Flint:** A GIANT SPATULA?!
+
+**Flint:** HA! I've spent forty years hammering swords, and nobody ever asked me to forge one of those!
+
+**Flint:** Anyway, if you're after a Cinderheart Pepper, you'll need to venture into the old forge at Emberfall.
+
+**Flint:** They built that place around a curious machine. It could turn the mountain's own fire back upon itself.
+
+**Flint:** They say the furnace doors only opened when the ancient switches were fed the flame they once released.
+
+**Flint:** Fire's a dangerous thing, chef. But a good piece of metal knows how to send it straight back.
+
+**Chef (thought):** Maybe this spatula was made for more than cooking.
+
+**Repeat conversation**
+
+**Flint:** Keep your eyes on the fireballs, not the creature throwing them.
+
+**Flint:** Timing's everything when you're sending something back where it came from.
+
+**After collecting the pepper**
+
+**Flint:** THE CINDERHEART PEPPER! YOU ACTUALLY FOUND IT!
+
+**Flint:** Tell the King that if he ever needs a new royal weapon, I've got some ideas.
+
+#### Volcano environmental interactions
+
+**Inspect ancient inscription:** "Fire returned shall wake the forge."
+
+**First Ash Imp encounter:** A creature of living flame! It seems ready to attack.
+
+**First successful reflection:** The spatula sends the fireball flying back!
+
+**Inspect furnace switch:** A dark metal emblem, shaped like a flame. There are scorch marks all around it.
+
+**First switch activated:** The switch glows red. Something inside the forge begins to move.
+
+**Second switch activated:** Two flames awakened. The sealed door trembles.
+
+**Third switch activated:** The furnace roars to life. The greenhouse door opens!
+
+**Inspect pepper plant:** A brilliant red pepper grows on a vine rooted in warm volcanic stone.
+
+**Collect pepper:** Obtained — Cinderheart Pepper!
+
+#### Optional Volcano puzzle hints
+
+**Hint 1 — Subtle**
+
+*These strange switches appear to react to fire. The ancient machinery might be the key to opening the greenhouse.*
+
+**Hint 2 — Directional**
+
+*The Ash Imp and fire spout launch fireballs across the room. Maybe your spatula could send those projectiles in another direction.*
+
+**Hint 3 — Explicit**
+
+*Face a furnace switch, then time your left-click attack to strike an incoming fireball. The reflected projectile travels towards your aim direction. Hit all three switches with reflected fireballs to unlock the greenhouse.*
+
+---
+
+### SCENE 06 — THE ROYAL KITCHEN
+
+**Location:** Royal Kitchen, reached from Bramblewick's Royal Road.
+
+**First arrival, before collecting all ingredients**
+
+**Steward Quill:** Ah! The chosen chef has arrived!
+
+**Steward Quill:** His Majesty's feast approaches, and the royal pantry is still missing its most important ingredients.
+
+**Steward Quill:** Might I suggest a little less sightseeing and a little more gathering?
+
+**Repeat conversation, while ingredients remain**
+
+**Steward Quill:** Let me see... Your list is not quite complete.
+
+**Steward Quill:** Please consult your royal letter. I would rather not serve His Majesty an empty plate.
+
+**After collecting all three ingredients**
+
+**Steward Quill:** You're back! And is that...?
+
+**Steward Quill:** The Dewcrown Mushroom! The Skyfeather Egg! The Cinderheart Pepper!
+
+**Steward Quill:** By the King's golden cutlery, you've actually done it!
+
+**Steward Quill:** Quickly, chef. Place them upon the preparation counter. The royal feast is about to begin!
+
+**Interaction prompt:** E — Present Ingredients
+
+### Final cutscene
+
+**Narration:** The chef places the three legendary ingredients on the grand kitchen counter.
+
+**Narration:** The mushroom glows softly. The egg shimmers like the morning sky. The pepper radiates a gentle warmth.
+
+**Steward Quill:** Extraordinary. Truly extraordinary!
+
+**Steward Quill:** And now, our finest chef, there is only one question left.
+
+**Steward Quill:** What on earth are you going to cook?
+
+**Chef (thought):** ...I probably should have thought about that.
+
+**Narration:** The screen fades to black.
+
+**Ending title:** THE INGREDIENTS HAVE BEEN GATHERED.
+
+**Ending subtitle:** The real cooking adventure is only beginning...
+
+**System message:** Prototype Complete — Thank you for playing!
+
+---
+
+### OPTIONAL AMBIENT VILLAGER DIALOGUE
+
+These are unnamed villagers used to make Bramblewick feel alive. They do not create additional quests.
+
+**Farmer:** The crops have been strange this year. My cabbages grew twice their usual size. One of them keeps looking at me.
+
+**Market Villager:** The King wants a birthday feast? Well, I've got perfectly good potatoes. No? Legendary ingredients only? His loss.
+
+**Child:** Is that a sword? No, wait... Is that a spatula?! Can you make pancakes with it?
+
+**Worried Villager:** I heard strange noises
+
+Asset:start with one comprehensive asset pack and create the chef-specific artwork in the same style
+— My first choice: Ninja Adventure Asset Pack
+Ninja Adventure — Pixel-Boy & AAA
+"C:\Users\Dell\Downloads\Ninja Adventure - Asset Pack.zip"
+"C:\Users\Dell\Downloads\Godot Project V4.zip" this is sampel godot project with the asset from the asset maker
+Despite the name, this is a large top-down adventure asset collection, not just a set of ninja characters.
+
+It includes outdoor and indoor tiles, more than 50 characters, 30 monsters, UI elements, visual effects, sound effects and music. 
+
+
+This pack is particularly useful because its March 2026 update added a fully animated character with idle, walking, jumping, rolling, attacking, pushing, climbing, picking up and other animations. Those match almost everything our chef needs. 
+
+Rather than drawing the chef's entire animation set from scratch, we can modify this character to wear a chef's hat and apron, then add the oversized spatula as a separate weapon sprite.
+
+The pack also has a defined colour palette intended to help developers create matching custom artwork.
+Where to use its assets
+Chef Game region	Ninja Adventure assets to use
+Bramblewick	Outdoor buildings, farming props, trees, paths, NPCs
+Riverwood	Forest terrain, trees, rocks, water and small monsters
+Whispering Peaks	Rocks, cliffs, frozen-water variants; custom snowy terrain and wind effects
+Emberfall	Interior walls, ruins, dungeon objects, attack effects; custom lava and forge artwork
+Royal Kitchen	Interior tiles, furniture, food items and UI elements
+This is not a guarantee that all the specialised mountain and volcano artwork already exists. The pack supplies a coherent foundation; the missing regional art needs to be created or adapted.
+
+The developer also provides a Godot 4 example project. Codex can inspect that project to understand the intended sprite animation layouts and tilesets, rather than guessing how to import them.
+Other specific useful packs
+Kenney Roguelike/RPG Pack
+
+Free, CC0. Includes approximately 1,700 16×16 assets spanning RPG environments and objects. A strong alternative for a simpler, cleaner aesthetic, but its art style should not be mixed indiscriminately with Ninja Adventure. 
+
+Kenney
+"C:\Users\Dell\Downloads\kenney_roguelike-rpg-pack.zip"
+
+My selected asset stack
+For this prototype, I'd use:
+Category	Selected source
+Main environment art	Ninja Adventure
+NPCs and enemies	Ninja Adventure, adapting characters as necessary
+Chef character	Custom adaptation of the pack's fully animated character
+Spatula weapon	Custom sprite, matched to pack palette
+Dialogue and inventory UI	Ninja Adventure UI theme
+Keyboard prompts	Kenney Input Prompts Pixel
+Sound and music	Ninja Adventure's included audio
+Special puzzle objects	Custom matching artwork
+Snow, updrafts and lava	Custom tiles and effects adapted to the primary pack's style
+Custom sprites Codex must account for
+The asset pack alone will not supply all of Chef Game's distinctive objects.
+Asset	Required appearance/animations
+Chef	White chef hat, apron, four-direction movement, whack, dodge and jump
+Giant spatula	Oversized metal spatula with directional swings
+Royal pigeon	Flight and letter-drop animations
+Sealed letter	Royal envelope and parchment illustration
+Weakened oak	Normal, damaged, heavily cracked, falling and bridge states
+Dewcrown Mushroom	Glowing mushroom with silver droplets
+Skyfeather Egg	Luminous egg and bird's nest
+Cinderheart Pepper	Glowing pepper and greenhouse vine
+Updrafts	Subtle swirling particle effects and stronger revealed state
+Furnace switches	Inactive and activated states
+Fire projectiles	Normal enemy fireball and reflected fireball
+Forge door	Closed, opening and open states
+Codex can implement the animations, effects, sprite layering, palette adjustments and tilemap integration. However, the quality of custom artwork cannot be guaranteed by programming alone. Codedx need to produce a separate artwork pass before calling the prototype visually complete.
+
+What I would give Codex alongside the assets
+A useful source layout would be:
+assets/
+├── source/
+│   ├── ninja_adventure/
+│   └── kenney_input_prompts_pixel/
+├── game/
+│   ├── characters/
+│   ├── environment/
+│   ├── ingredients/
+│   ├── objects/
+│   ├── ui/
+│   ├── effects/
+│   └── audio/
+├── custom/
+│   ├── chef/
+│   ├── spatula/
+│   ├── puzzle_objects/
+│   └── region_tiles/
+└── ASSET_MANIFEST.md
+
+
+The source/ directory holds the downloaded original assets. The game/ directory contains only assets selected and prepared for use in Chef Game. custom/ contains original or adapted artwork.
+
+ASSET_MANIFEST.md should record each asset's filename, source pack, licence, intended use, frame dimensions and any modifications.
+
+I'd tell Codex to inspect the actual pack contents and construct a sprite/animation inventory before deciding how to render a character or environment. A missing sprite should be reported explicitly rather than silently replaced with a crude placeholder in the final build.
+Part IV — Art direction rules
+I would add these constraints to the eventual ART_DIRECTION.md:
+Bramblewick
+Cosy, warm, welcoming
+
+Riverwood
+Lush, mysterious, magical
+
+Whispering Peaks
+Cold, spacious, ethereal
+
+Emberfall
+Dangerous, fiery, dramatic
+
+
+These palettes are proposed colour guides, not replacements for the primary asset pack's existing palette. The original pack's shading and outlines should remain consistent.
+
+For sprite sizing, retain the 16×16 tile grid. Character art can extend beyond one tile where needed, especially for the chef's hat, large weapon and bigger enemies. Use nearest-neighbour scaling and avoid mixing sprites with incompatible pixel densities or lighting directions.
+
+always carefully refer back to this prompt if u dont rmbr sth, if sth like design stuff u had to come up w urself, report it back to me, proceed the entire end to end process, i give u permission to read, edit, copy and make new files in my computer, and tell me where the final path of all the code is

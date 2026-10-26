@@ -1,0 +1,342 @@
+[
+  {
+    "file": "assets/game/floor.png",
+    "source": "Backgrounds/Tilesets/TilesetFloor.png",
+    "license": "CC0-1.0",
+    "modifications": "Unmodified",
+    "dimensions": [
+      352,
+      417
+    ],
+    "frame_dimensions": "16px atlas grid; objects span multiple cells"
+  },
+  {
+    "file": "assets/game/nature.png",
+    "source": "Backgrounds/Tilesets/TilesetNature.png",
+    "license": "CC0-1.0",
+    "modifications": "Unmodified",
+    "dimensions": [
+      384,
+      336
+    ],
+    "frame_dimensions": "16px atlas grid; objects span multiple cells"
+  },
+  {
+    "file": "assets/game/house.png",
+    "source": "Backgrounds/Tilesets/TilesetHouse.png",
+    "license": "CC0-1.0",
+    "modifications": "Unmodified",
+    "dimensions": [
+      528,
+      368
+    ],
+    "frame_dimensions": "16px atlas grid; objects span multiple cells"
+  },
+  {
+    "file": "assets/game/interior.png",
+    "source": "Backgrounds/Tilesets/Interior/TilesetInterior.png",
+    "license": "CC0-1.0",
+    "modifications": "Unmodified",
+    "dimensions": [
+      256,
+      320
+    ],
+    "frame_dimensions": "16px atlas grid; objects span multiple cells"
+  },
+  {
+    "file": "assets/game/font.ttf",
+    "source": "Ui/Font/NormalFont.ttf",
+    "license": "CC0-1.0",
+    "modifications": "Unmodified"
+  },
+  {
+    "file": "assets/game/rowan.png",
+    "source": "Actor/Character/OldMan/SpriteSheet.png",
+    "license": "CC0-1.0",
+    "modifications": "Unmodified",
+    "dimensions": [
+      64,
+      112
+    ],
+    "frame_dimensions": [
+      16,
+      16
+    ],
+    "columns": 4,
+    "rows": 7
+  },
+  {
+    "file": "assets/game/mira.png",
+    "source": "Actor/Character/Eskimo/SpriteSheet.png",
+    "license": "CC0-1.0",
+    "modifications": "Unmodified",
+    "dimensions": [
+      64,
+      112
+    ],
+    "frame_dimensions": [
+      16,
+      16
+    ],
+    "columns": 4,
+    "rows": 7
+  },
+  {
+    "file": "assets/game/flint.png",
+    "source": "Actor/Character/GladiatorBlue/SpriteSheet.png",
+    "license": "CC0-1.0",
+    "modifications": "Unmodified",
+    "dimensions": [
+      64,
+      112
+    ],
+    "frame_dimensions": [
+      16,
+      16
+    ],
+    "columns": 4,
+    "rows": 7
+  },
+  {
+    "file": "assets/game/bram.png",
+    "source": "Actor/Character/Hunter/SpriteSheet.png",
+    "license": "CC0-1.0",
+    "modifications": "Unmodified",
+    "dimensions": [
+      64,
+      112
+    ],
+    "frame_dimensions": [
+      16,
+      16
+    ],
+    "columns": 4,
+    "rows": 7
+  },
+  {
+    "file": "assets/game/quill.png",
+    "source": "Actor/Character/Noble/SpriteSheet.png",
+    "license": "CC0-1.0",
+    "modifications": "Unmodified",
+    "dimensions": [
+      64,
+      112
+    ],
+    "frame_dimensions": [
+      16,
+      16
+    ],
+    "columns": 4,
+    "rows": 7
+  },
+  {
+    "file": "assets/game/child.png",
+    "source": "Actor/Character/Child/SpriteSheet.png",
+    "license": "CC0-1.0",
+    "modifications": "Unmodified",
+    "dimensions": [
+      64,
+      32
+    ],
+    "frame_dimensions": [
+      16,
+      16
+    ],
+    "columns": 4,
+    "rows": 2
+  },
+  {
+    "file": "assets/game/imp.png",
+    "source": "Actor/Character/Flam/SpriteSheet.png",
+    "license": "CC0-1.0",
+    "modifications": "Unmodified",
+    "dimensions": [
+      64,
+      112
+    ],
+    "frame_dimensions": [
+      16,
+      16
+    ],
+    "columns": 4,
+    "rows": 7
+  },
+  {
+    "file": "assets/game/village.ogg",
+    "source": "Audio/Musics/4 - Village.ogg",
+    "license": "CC0-1.0",
+    "modifications": "Unmodified"
+  },
+  {
+    "file": "assets/game/forest.ogg",
+    "source": "Audio/Musics/11 - Clearing.ogg",
+    "license": "CC0-1.0",
+    "modifications": "Unmodified"
+  },
+  {
+    "file": "assets/game/mountains.ogg",
+    "source": "Audio/Musics/22 - Dream.ogg",
+    "license": "CC0-1.0",
+    "modifications": "Unmodified"
+  },
+  {
+    "file": "assets/game/volcano.ogg",
+    "source": "Audio/Musics/30 - Ruins.ogg",
+    "license": "CC0-1.0",
+    "modifications": "Unmodified"
+  },
+  {
+    "file": "assets/game/kitchen.ogg",
+    "source": "Audio/Musics/5 - Peaceful.ogg",
+    "license": "CC0-1.0",
+    "modifications": "Unmodified"
+  },
+  {
+    "file": "assets/game/whack.wav",
+    "source": "Audio/Sounds/Whoosh & Slash/Whoosh.wav",
+    "license": "CC0-1.0",
+    "modifications": "Unmodified"
+  },
+  {
+    "file": "assets/game/collect.wav",
+    "source": "Audio/Jingles/Secret1.wav",
+    "license": "CC0-1.0",
+    "modifications": "Unmodified"
+  },
+  {
+    "file": "assets/game/reflect.wav",
+    "source": "Audio/Jingles/Secret2.wav",
+    "license": "CC0-1.0",
+    "modifications": "Unmodified"
+  },
+  {
+    "file": "assets/game/talk.wav",
+    "source": "Audio/Sounds/Alert/Alert.wav",
+    "license": "CC0-1.0",
+    "modifications": "Unmodified"
+  },
+  {
+    "file": "assets/game/idle.png",
+    "source": "Actor/CharacterAnimated/NinjaGreen/Separate/Idle.png",
+    "license": "CC0-1.0",
+    "modifications": "Unmodified",
+    "dimensions": [
+      128,
+      128
+    ],
+    "frame_dimensions": [
+      32,
+      32
+    ],
+    "columns": 4,
+    "rows": 4
+  },
+  {
+    "file": "assets/game/walk.png",
+    "source": "Actor/CharacterAnimated/NinjaGreen/Separate/Walk.png",
+    "license": "CC0-1.0",
+    "modifications": "Unmodified. Chef costume and spatula are code-drawn overlays.",
+    "dimensions": [
+      128,
+      128
+    ],
+    "frame_dimensions": [
+      32,
+      32
+    ],
+    "columns": 4,
+    "rows": 4
+  },
+  {
+    "file": "assets/game/attack.png",
+    "source": "Actor/CharacterAnimated/NinjaGreen/Separate/Attack.png",
+    "license": "CC0-1.0",
+    "modifications": "Unmodified",
+    "dimensions": [
+      128,
+      128
+    ],
+    "frame_dimensions": [
+      32,
+      32
+    ],
+    "columns": 4,
+    "rows": 4
+  },
+  {
+    "file": "assets/game/roll.png",
+    "source": "Actor/CharacterAnimated/NinjaGreen/Separate/Roll.png",
+    "license": "CC0-1.0",
+    "modifications": "Unmodified",
+    "dimensions": [
+      128,
+      96
+    ],
+    "frame_dimensions": [
+      32,
+      32
+    ],
+    "columns": 4,
+    "rows": 3
+  },
+  {
+    "file": "assets/game/jump.png",
+    "source": "Actor/CharacterAnimated/NinjaGreen/Separate/Jump.png",
+    "license": "CC0-1.0",
+    "modifications": "Unmodified",
+    "dimensions": [
+      96,
+      128
+    ],
+    "frame_dimensions": [
+      32,
+      32
+    ],
+    "columns": 3,
+    "rows": 4
+  },
+  {
+    "file": "assets/game/pickup.png",
+    "source": "Actor/CharacterAnimated/NinjaGreen/Separate/Pickup.png",
+    "license": "CC0-1.0",
+    "modifications": "Unmodified",
+    "dimensions": [
+      32,
+      64
+    ],
+    "frame_dimensions": [
+      32,
+      32
+    ],
+    "columns": 1,
+    "rows": 2
+  },
+  {
+    "file": "assets/game/hit.png",
+    "source": "Actor/CharacterAnimated/NinjaGreen/Separate/Hit.png",
+    "license": "CC0-1.0",
+    "modifications": "Unmodified",
+    "dimensions": [
+      128,
+      64
+    ],
+    "frame_dimensions": [
+      32,
+      32
+    ],
+    "columns": 4,
+    "rows": 2
+  },
+  {
+    "file": "assets/game/jump.wav",
+    "source": "Audio/Sounds/Jump & Bounce/Jump.wav",
+    "license": "CC0-1.0",
+    "modifications": "Unmodified"
+  },
+  {
+    "file": "assets/game/fireball.wav",
+    "source": "Audio/Sounds/Elemental/Fireball.wav",
+    "license": "CC0-1.0",
+    "modifications": "Unmodified"
+  }
+]
